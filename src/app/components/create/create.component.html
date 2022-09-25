@@ -1,0 +1,88 @@
+
+<div class="create-titles-container">
+  <div class="card-container">
+    <h5>Create Category</h5>
+  
+    <form class="category-form">
+        <div class="col">
+          <input class="form-control" name="category" [(ngModel)]="newCategoryName" 
+          placeholder="Create category name">
+        </div>
+          <button class="btn btn-primary" (click)="createNewCategory()">Save +</button>
+  
+    </form>
+  </div>
+  
+  <div class="card-container">
+    <h5>Create Sub Category</h5>
+  
+    <form class="category-form">
+        <div class="col">
+          <input class="form-control" name="subcategory" [(ngModel)]="newSubCategoryName" 
+          placeholder="Create sub category name">
+        </div>
+          <button class="btn btn-primary" (click)="createNewSubCategory()">Save +</button>
+    </form>
+  </div>
+</div>
+
+
+<div class="create-article-container">
+
+  <h5>Create Article</h5>
+
+  <div class="card-container">
+  
+      <form [formGroup]="categoryForm">
+        <div class="row">
+          <div class="col">
+            <label class="form-label">Category</label>
+            <div>
+              <dx-select-box (onValueChanged)="onCategoryChange($event)" formControlName="titleCategory" [searchEnabled]="true" [dataSource]="categoryDataSource"
+                displayExpr="title" searchMode="contains" [showDataBeforeSearch]="true"
+                placeholder="Select a Category.." [showClearButton]="true">
+              </dx-select-box>
+            </div>
+          </div>
+        </div>
+      </form>
+  </div>
+  
+  <div class="card-container">
+    <form [formGroup]="subCategoryForm">
+      <div class="row">
+        <div class="col">
+          <label class="form-label">Sub Category</label>
+          <div>
+            <dx-select-box (onValueChanged)="onSubCategoryChange($event)" formControlName="titleSubCategory" [searchEnabled]="true" [dataSource]="subCategoryDataSource"
+              displayExpr="title" searchMode="contains" [showDataBeforeSearch]="true"
+              placeholder="Select a Sub Category.." [showClearButton]="true">
+            </dx-select-box>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="card-container text-article">
+    <div>
+      <div class="row">
+        <div class="col">
+          <label class="form-label">Text</label>
+          <div>
+            <dx-text-area
+            [(ngModel)]="currentText"
+            [height]="200"
+          >
+          </dx-text-area>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button class="btn btn-success" (click)="createArticleForm()" type="submit">SAVE ARTICLE</button>
+
+</div>
+
+

@@ -1,0 +1,47 @@
+<div class="nav-container">
+    <div class="header">
+        <div class="logo">
+            <img src="{{ logoUrl }}" alt="logo">
+        </div>
+
+        <div class="login-container">
+            <button class="login-button">Iniciar sesion</button>
+            <button class="login-button" routerLink="/create">Add content</button>
+
+        </div>
+    </div>
+</div>
+
+<div class="items">
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <ng-container *ngFor="let article of articles">
+          <li class="nav-item dropdown" *ngIf="articles">
+            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              {{article.category}}
+            </a>
+
+            
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item nav-item">{{article.subcategory}}</a>
+                </li>
+              </ul>
+          
+          </li>
+        </ng-container>
+        </ul>
+
+      </div>
+    </div>
+  </nav>
+
+</div>
+
