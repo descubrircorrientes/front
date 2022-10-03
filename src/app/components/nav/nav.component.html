@@ -23,17 +23,15 @@
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <ng-container *ngFor="let article of articles">
-          <li class="nav-item dropdown" *ngIf="articles">
-            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              {{article.category}}
+          <ng-container *ngFor="let categorie of categories; index as i">
+          <li class="nav-item dropdown" *ngIf="categories">
+            <a class="nav-link"  role="button" aria-expanded="false" (click)="searchSubcategories(categorie.title)">
+              {{categorie.title}}
             </a>
-
-            
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item nav-item">{{article.subcategory}}</a>
+              <!-- <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a [routerLink]="['/article', i]" class="dropdown-item nav-item">{{article.subcategory}}</a>
                 </li>
-              </ul>
+              </ul> -->
           
           </li>
         </ng-container>

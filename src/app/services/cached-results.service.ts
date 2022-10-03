@@ -1,5 +1,6 @@
+import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of, switchMap, tap } from 'rxjs';
+import { firstValueFrom, Observable, of, switchMap, tap } from 'rxjs';
 import { Category, SubCategory } from '../components/models/article.model';
 import { HttpApiService } from './http-api.service';
 

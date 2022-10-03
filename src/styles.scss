@@ -1,39 +1,61 @@
+/* dev-extreme css override */
 
-// Custom Theming for Angular Material
-// For more information: https://material.angular.io/guide/theming
-@use '~@angular/material' as mat;
-// Plus imports for other components in your app.
+.dx-datagrid-invalid::after {
+  border: 1px solid #dc3545 !important;
+}
 
-// Include the common styles for Angular Material. We include this here so that you only
-// have to load a single css file for Angular Material in your app.
-// Be sure that you only ever include this mixin once!
-@include mat.core();
+.dx-data-row.dx-state-hover > td {
+  cursor: pointer;
+  // color: #fff !important;
+  background-color: #ddeff7 !important;
+}
 
-// Define the palettes for your theme using the Material Design palettes available in palette.scss
-// (imported above). For each palette, you can optionally specify a default, lighter, and darker
-// hue. Available color palettes: https://material.io/design/color/
-$descubrir-corrientes-primary: mat.define-palette(mat.$indigo-palette);
-$descubrir-corrientes-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+.dx-row.dx-header-row td {
+  background: #334250;
+  color: #fff;
+  font-weight: 400;
+  border: 0 !important;
+  padding: 10px 10px 10px 6px;
+  // font-family: Roboto;
+}
 
-// The warn palette is optional (defaults to red).
-$descubrir-corrientes-warn: mat.define-palette(mat.$red-palette);
+.dx-data-row.dx-selection.dx-row > td {
+  background: #eaf7c9 !important;
+}
 
-// Create the theme object. A theme consists of configurations for individual
-// theming systems such as "color" or "typography".
-$descubrir-corrientes-theme: mat.define-light-theme((
-  color: (
-    primary: $descubrir-corrientes-primary,
-    accent: $descubrir-corrientes-accent,
-    warn: $descubrir-corrientes-warn,
-  )
-));
+.dx-state-disabled .dx-texteditor-input {
+  background-color: #ededee;
+}
 
-// Include theme styles for core and each component used in your app.
-// Alternatively, you can import and @include the theme mixins for each component
-// that you are using.
-@include mat.all-component-themes($descubrir-corrientes-theme);
+.dx-datagrid .dx-row > td {
+  padding: 10px;
+}
 
-/* You can add global styles to this file, and also import other style files */
-@import "~bootstrap/scss/bootstrap";
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.dx-dropdownbutton .dx-button {
+  background-color: #000033;
+  color: #fff;
+
+  .dx-icon {
+      color: white;
+  }
+
+  :hover {
+      background: #676a6d;
+      color: white;
+  }
+
+}
+
+.cst-modified-cell {
+  position: relative;
+}
+
+.cst-modified-cell::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  border: 2px solid rgba(92, 184, 92, 0.5) !important;
+}

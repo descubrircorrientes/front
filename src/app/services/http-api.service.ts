@@ -57,11 +57,9 @@ export class HttpApiService {
   }
   
   createArticle(article: any){
-
     return this.http.post<any>(this.articlesUrl, article).subscribe({
       next: data => {        
         console.log('art',data);
-
         // location.reload();
     },
     error: error => {

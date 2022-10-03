@@ -47,8 +47,6 @@ export class CreateComponent implements OnInit {
     this.createSubCategoryDataSource();
   }
 
-
-
   // CATEGORY AND SUBCATEGORY FORM
 
   createCategoryForm(){
@@ -92,16 +90,18 @@ export class CreateComponent implements OnInit {
   // CREATE CATEGORIES AND SUBCATEGORIES
 
   createNewCategory(){
-    console.log(this.newCategoryName);
     const body = {
       title:  this.newCategoryName
     }
     JSON.stringify(body);
-    // console.log(body);
     this.httpApiService.createCategory(body);
   }
 
   createNewSubCategory(){
+    if(!this.currentCategory){
+      alert('Selecciona una categoria');
+      return
+    }
     const body = {
       category: this.currentCategory,
       title:  this.newSubCategoryName
@@ -127,22 +127,19 @@ export class CreateComponent implements OnInit {
       text: new FormControl(this.currentText, Validators.required),
       images: new FormControl('')
     });
-
-
     const newArticle = this.createNewArticle(this.articleForm.value);    
     this.httpApiService.createArticle(newArticle);
   }
 
-createNewArticle(e){
-  console.log('form', e);
-  
-  const newArticle: ArticleDto = {
-    category: e.titleCategory,
-    subcategory: e.titleSubCategory,
-    text: e.text,
-    images: e.images
-  };
-  return newArticle;
+  createNewArticle(e){
+
+    const newArticle: ArticleDto = {
+      category: e.titleCategory,
+      subcategory: e.titleSubCategory,
+      text: e.text,
+      images: e.images
+    };
+    return newArticle;
   }
   
 }

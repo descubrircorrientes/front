@@ -20,6 +20,10 @@ import {
   DxSelectBoxModule, 
   DxTextAreaModule } from 'devextreme-angular';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ArticleComponent } from './article/article.component';
+import { CategoryComponent } from './lookups/category/category.component';
+import { SubcategoryComponent } from './lookups/subcategory/subcategory.component';
+import { ArticlesComponent } from './lookups/articles/articles.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +31,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     NavComponent,
     InfoComponent,
     IndexComponent,
-    CreateComponent
+    CreateComponent,
+    ArticleComponent,
+    CategoryComponent,
+    SubcategoryComponent,
+    ArticlesComponent
   ],
   imports: [
     HttpClientModule,
