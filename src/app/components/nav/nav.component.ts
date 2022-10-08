@@ -35,16 +35,13 @@ export class NavComponent implements OnInit {
   }
 
   ngOnInit() {
-
     this.httpApiService.searchCategories().subscribe((categories: Category) => {
       this.categories = categories;
     })
 
     this.httpApiService.searchArticles().subscribe((articles: ArticleDto) => {      
-      this.articles = articles;      
+      this.articles = articles;  
     });
-
-
   }
 
   getCategories(){
@@ -59,7 +56,6 @@ export class NavComponent implements OnInit {
     });
   }
 
-
   searchSubcategories(title: string): Promise<SubCategory> { 
     this.categoryService.currentCategory = title;
     return new Promise((resolve, reject) => {
@@ -67,7 +63,8 @@ export class NavComponent implements OnInit {
         .result.then(() => {
           const categoryItem = this.categoryService.getSelectedItem();
           this.currentItem = categoryItem;
-          this.router.navigate(['/article', this.currentItem.title], {relativeTo: this.activatedRoute});
+          localStorage.setItem('currentArticle', JSON.stringify(this.currentItem));          
+          this.router.navigate(['/article', this.currentItem._id], {relativeTo: this.activatedRoute});
           if (this.currentItem) {
             resolve(this.currentItem);
           } else {
@@ -77,4 +74,4 @@ export class NavComponent implements OnInit {
     });
   }
     
-  }
+}

@@ -16,6 +16,7 @@ export class CategoryComponent implements OnInit {
   @ViewChild(DxDataGridComponent, { static: false }) dataGrid: DxDataGridComponent;
   dataSource: DataSource;
   searchText: string;
+  categoryName: string;
 
   constructor(
     private activeModal: NgbActiveModal,
@@ -26,6 +27,8 @@ export class CategoryComponent implements OnInit {
 
   ngOnInit(): void {
     this.createDatasource();
+    this.categoryName = this.categoryService.currentCategory;
+
   }
 
   onRowClick(e: any) {
@@ -57,10 +60,8 @@ export class CategoryComponent implements OnInit {
         return key;
       },
       load: () => {
-        return firstValueFrom(this.cachedResultsService.searchSubCategoriesFromCache());
+        return firstValueFrom(this.cachedResultsService.searchArticlesFromCache());
       }
     })
   }
-
-
 }

@@ -21,7 +21,20 @@
           <input class="form-control" name="subcategory" [(ngModel)]="newSubCategoryName" 
           placeholder="Create sub category name">
         </div>
-          <button class="btn btn-primary" (click)="createNewSubCategory()">Save +</button>
+        <button class="btn btn-primary" (click)="createNewSubCategory()">Save +</button>
+    </form>
+  </div>
+
+  <div class="card-container">
+    <h5>Create Sub Second Subcategory</h5>
+  
+    <form class="category-form">
+        <div class="col">
+          <input class="form-control" name="secondSubcategory" [(ngModel)]="newSecondSubcategoryName" 
+          placeholder="Create sub secondSubcategory name">
+        </div>
+
+        <button class="btn btn-primary" (click)="createNewSecondSubcategory()">Save +</button>
     </form>
   </div>
 </div>
@@ -54,6 +67,23 @@
             <dx-select-box (onValueChanged)="onSubCategoryChange($event)" formControlName="titleSubCategory" [searchEnabled]="true" [dataSource]="subCategoryDataSource"
               displayExpr="title" searchMode="contains" [showDataBeforeSearch]="true"
               placeholder="Select a Sub Category.." [showClearButton]="true">
+            </dx-select-box>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+
+
+  <div class="card-container">
+    <form [formGroup]="secondSubCategoryForm">
+      <div class="row">
+        <div class="col">
+          <label class="form-label">Second Sub Category</label>
+          <div>
+            <dx-select-box (onValueChanged)="onSecondSubCategoryChange($event)" formControlName="titleSecondSubCategory" [searchEnabled]="true" [dataSource]="secondSubCategoryDataSource"
+              displayExpr="title" searchMode="contains" [showDataBeforeSearch]="true"
+              placeholder="Select a Second Sub Category.." [showClearButton]="true">
             </dx-select-box>
           </div>
         </div>

@@ -1,9 +1,6 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute, Route } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { ArticleDto } from '../components/models/article.model';
-import { ArticleService } from '../services/article.service';
-import { HttpApiService } from '../services/http-api.service';
 
 @Component({
   selector: 'app-article',
@@ -13,26 +10,18 @@ import { HttpApiService } from '../services/http-api.service';
 export class ArticleComponent implements OnInit {
 
   articleParams: any;
-   articles: any;
-  article: ArticleDto;
+  articles: ArticleDto[];
+  article: any;
   currentItem: any;
 
   constructor(
     private routes: ActivatedRoute,
-    private articleService: ArticleService,
-    private httpApiService: HttpApiService,
-
   ) {
-    this.routes.params.subscribe(params => {
-      console.log(params);
-      
-      // this.articleParams = params['id'];
-      // this.articles = this.articleService.articles;
-      // this.article = this.articles[this.articleParams]
+    this.routes.params.subscribe(() => {
+      this.article = JSON.parse(localStorage.getItem('currentArticle'));
     });
   }
 
   ngOnInit() {
   }
-
 }

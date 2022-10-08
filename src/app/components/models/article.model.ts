@@ -1,6 +1,7 @@
 export interface ArticleDto {
     category: Category;
-    subcategory: SubCategory;
+    subcategory?: SubCategory;
+    secondsubcategory?: string;
     images?: string;
     text: string;
 }
@@ -11,7 +12,15 @@ export interface Category {
 }
 
 export interface SubCategory {
-    category?: string;
+    category: string;
+    secondSubcategory?: SecondSubCategory;
+    title: string;
+    id?: string;
+}
+
+export interface SecondSubCategory {
+    category: string;
+    subcategory: string;
     title: string;
     id?: string;
 }

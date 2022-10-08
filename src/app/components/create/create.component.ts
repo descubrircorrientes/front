@@ -4,7 +4,7 @@ import DataSource from 'devextreme/data/data_source';
 import { firstValueFrom, Observable, Subject } from 'rxjs';
 import { CachedResultsService } from 'src/app/services/cached-results.service';
 import { HttpApiService } from 'src/app/services/http-api.service';
-import { ArticleDto } from '../models/article.model';
+import { ArticleDto, Category, SecondSubCategory, SubCategory } from '../models/article.model';
 
 @Component({
   selector: 'app-create',
@@ -15,7 +15,9 @@ export class CreateComponent implements OnInit {
 
   categoryForm: FormGroup = new FormGroup({});
   subCategoryForm: FormGroup = new FormGroup({});
+  secondSubCategoryForm: FormGroup = new FormGroup({})
   articleForm: FormGroup = new FormGroup({});
+
   article: ArticleDto[] = [];
 
   valueForEditableTextArea: string;
@@ -23,14 +25,23 @@ export class CreateComponent implements OnInit {
   value: string;
   valueChangeEvents: any[];
 
+  categories: any;
+  subcategories: any;
+  secondsubcategories: any;
+
   categoryDataSource: DataSource | undefined;
   newCategoryName: string = '';
 
   subCategoryDataSource: DataSource | undefined;
   newSubCategoryName: string = '';
 
+  secondSubCategoryDataSource: DataSource | undefined;
+  newSecondSubcategoryName: string = '';
+
   currentCategory: string = '';
   currentSubCategory: string = '';
+  currentSecondSubCategory: string = '';
+
   currentText: string = '';
 
   constructor(
@@ -42,12 +53,14 @@ export class CreateComponent implements OnInit {
   ngOnInit() {
     this.createCategoryForm();
     this.createSubCategoryForm();
+    this.createSecondSubCategoryForm();
 
     this.createCategoryDataSource();
     this.createSubCategoryDataSource();
+    this.createSecondSubCategoryDataSource();
   }
 
-  // CATEGORY AND SUBCATEGORY FORM
+  // CATEGORY, SUBCATEGORY AND SECOND SUBCATEGORI FORM
 
   createCategoryForm(){
     this.categoryForm = new FormGroup({
@@ -58,6 +71,12 @@ export class CreateComponent implements OnInit {
   createSubCategoryForm(){
     this.subCategoryForm = new FormGroup({
       titleSubCategory: new FormControl('', Validators.required)
+    });
+  }
+
+  createSecondSubCategoryForm(){
+    this.secondSubCategoryForm = new FormGroup({
+      titleSecondSubCategory: new FormControl('', Validators.required)
     });
   }
 
@@ -86,28 +105,100 @@ export class CreateComponent implements OnInit {
       }
     })
   }
-
-  // CREATE CATEGORIES AND SUBCATEGORIES
-
-  createNewCategory(){
-    const body = {
-      title:  this.newCategoryName
-    }
-    JSON.stringify(body);
-    this.httpApiService.createCategory(body);
+  
+  createSecondSubCategoryDataSource(){
+    this.secondSubCategoryDataSource = new DataSource({
+      loadMode: 'raw',
+      byKey: (key) => {
+        return key;
+      },
+      load: () => {
+        return firstValueFrom(this.cachedResultsService.searchSecondSubCategoriesFromCache());
+      }
+    })
   }
 
+  // CREATE CATEGORIES, SUBCATEGORIES AND SECOND SUBCATEGORIES
+
+  createNewCategory(){
+    this.httpApiService.searchCategories().subscribe((categories: Category) => {
+      this.categories = categories;      
+      this.createNewCategoryBody(this.categories);
+    })    
+  }
+
+  createNewCategoryBody(categories){
+      categories.map((value) => {
+        if( value.title === this.newCategoryName){
+          console.log('Ya existe una categoria con ese nombre.');
+        } else {
+          const body = {
+            title:  this.newCategoryName
+          }
+          JSON.stringify(body);
+          this.httpApiService.createCategory(body);
+        }
+      })
+  }
+
+
+
   createNewSubCategory(){
-    if(!this.currentCategory){
-      alert('Selecciona una categoria');
-      return
+    this.httpApiService.searchSubCategories().subscribe((subcategories: SubCategory) => {
+      this.subcategories = subcategories;
+      this.createNewSubCategoryBody(this.subcategories);
+    });
+  }
+
+  createNewSubCategoryBody(subcategories){
+    if(this.currentCategory){
+      subcategories.map((value) => {
+        if( value.title === this.newSubCategoryName){
+          console.log('Ya existe una sub categoria con ese nombre.');
+        } else {
+  
+      const body = {
+        category: this.currentCategory,
+        title:  this.newSubCategoryName,
+      }
+      JSON.stringify(body);
+      this.httpApiService.createSubCategory(body);
+        }
+      })
+    } else {
+      console.log('Selecciona una categoria');
     }
-    const body = {
-      category: this.currentCategory,
-      title:  this.newSubCategoryName
+
+
+  }
+  
+
+  createNewSecondSubcategory(){  
+    this.httpApiService.searchSecondSubcategory().subscribe((secondsubcategories: SecondSubCategory) => {
+      this.secondsubcategories = secondsubcategories;
+      this.createNewSecondSubCategoryBody(this.secondsubcategories);
+    });
+  }
+
+  createNewSecondSubCategoryBody(secondsubcategories){
+    if(this.currentCategory && this.currentSubCategory){
+      secondsubcategories.map((value) => {
+        if( value.title === this.newSecondSubcategoryName){
+          console.log('Ya existe una sub categoria con ese nombre.');
+        } else {
+
+      const body = {
+        category: this.currentCategory,
+        subcategory: this.currentSubCategory,
+        title:  this.newSecondSubcategoryName,
+      }
+      JSON.stringify(body);    
+      this.httpApiService.createSecondSubcategory(body);
+        }
+      })
+    } else {
+      console.log('Selecciona una categoria y una subcategoria');
     }
-    JSON.stringify(body);
-    this.httpApiService.createSubCategory(body);
   }
 
 // SELECT OPTIONS
@@ -120,10 +211,15 @@ export class CreateComponent implements OnInit {
     this.currentSubCategory = e.value.title;
   }
 
+  onSecondSubCategoryChange(e: any){
+    this.currentSecondSubCategory = e.value.title;
+  }
+
   createArticleForm(){
     this.articleForm = new FormGroup({
       titleCategory: new FormControl(this.currentCategory, Validators.required),
       titleSubCategory: new FormControl(this.currentSubCategory, Validators.required),
+      titleSecondSubCategory: new FormControl(this.currentSecondSubCategory),
       text: new FormControl(this.currentText, Validators.required),
       images: new FormControl('')
     });
@@ -132,10 +228,10 @@ export class CreateComponent implements OnInit {
   }
 
   createNewArticle(e){
-
     const newArticle: ArticleDto = {
       category: e.titleCategory,
       subcategory: e.titleSubCategory,
+      secondsubcategory : e.titleSecondSubCategory,
       text: e.text,
       images: e.images
     };

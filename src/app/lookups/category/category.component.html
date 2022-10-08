@@ -1,4 +1,39 @@
 <div class="modal-header">
+  <h4 class="modal-title">{{categoryName}}</h4>
+  <button type="button" class="btn-close" aria-label="Close" (click)="dismissModal()"></button>
+</div>
+<div class="modal-body">
+  <div class="container card-container">
+    <div class="row">
+      <div class="col-lg-12 table-container">
+        <dx-data-grid
+          #dataGrid id="gridContainer"
+          (onRowDblClick)="onRowDblClick($event)" 
+          (onRowClick)="onRowClick($event)"
+          [dataSource]="dataSource"
+          [showRowLines]="true"
+          [showBorders]="true"
+          [columnAutoWidth]="true"
+        >
+          <dxo-filter-row [visible]="true"></dxo-filter-row>
+          <dxi-column dataField="subcategory" caption="Subcategories" width="30%"></dxi-column>
+          <dxi-column dataField="secondsubcategory" caption="Second Subcategories" width="70%"></dxi-column>
+        </dx-data-grid> 
+
+
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn primaryBtn" (click)="closeModal()">Select</button>
+</div>
+
+
+
+
+
+<!-- <div class="modal-header">
     <h4 class="modal-title">Categories</h4>
     <button type="button" class="btn-close" aria-label="Close" (click)="dismissModal()"></button>
   </div>
@@ -17,4 +52,4 @@
   </div>
   <div class="modal-footer">
     <button type="button" class="btn primaryBtn" (click)="closeModal()">Select</button>
-  </div>
+  </div> -->

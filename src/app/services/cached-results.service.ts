@@ -1,7 +1,8 @@
 import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { firstValueFrom, Observable, of, switchMap, tap } from 'rxjs';
-import { Category, SubCategory } from '../components/models/article.model';
+import { ArticleComponent } from '../article/article.component';
+import { ArticleDto, Category, SecondSubCategory, SubCategory } from '../components/models/article.model';
 import { HttpApiService } from './http-api.service';
 
 @Injectable({
@@ -10,7 +11,6 @@ import { HttpApiService } from './http-api.service';
 export class CachedResultsService {
   categories: Category[];
   subCategories: SubCategory[];
-
 
   constructor(
     private httpApiService: HttpApiService
@@ -25,6 +25,14 @@ export class CachedResultsService {
 
   searchSubCategoriesFromCache(): Observable<SubCategory> {
     return this.httpApiService.searchSubCategories();
+  }
+
+  searchSecondSubCategoriesFromCache(): Observable<SecondSubCategory> {
+    return this.httpApiService.searchSecondSubcategory();
+  }
+
+  searchArticlesFromCache(): Observable<ArticleDto> {
+    return this.httpApiService.searchArticles();
   }
 
 }

@@ -6,7 +6,7 @@ import { SubCategory } from 'src/app/components/models/article.model';
 })
 export class CategoryService {
 
-  private selectedItem: SubCategory;
+  private selectedItem: any;
   currentCategory: string;
 
   constructor(
@@ -16,8 +16,8 @@ export class CategoryService {
     return this.selectedItem;
   }
 
-  setSeletedItem(subcategories: SubCategory) {
-    this.selectedItem = subcategories;
+  setSeletedItem(selected: any) {
+    this.selectedItem = selected;
   }
 
 }
