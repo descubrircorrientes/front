@@ -25,9 +25,9 @@ export class CreateComponent implements OnInit {
   value: string;
   valueChangeEvents: any[];
 
-  categories: any;
-  subcategories: any;
-  secondsubcategories: any;
+  categories: any = [];
+  subcategories: any = [];
+  secondsubcategories: any = [];
 
   categoryDataSource: DataSource | undefined;
   newCategoryName: string = '';
@@ -128,20 +128,17 @@ export class CreateComponent implements OnInit {
   }
 
   createNewCategoryBody(categories){
-      categories.map((value) => {
-        if( value.title === this.newCategoryName){
-          console.log('Ya existe una categoria con ese nombre.');
-        } else {
-          const body = {
-            title:  this.newCategoryName
-          }
-          JSON.stringify(body);
-          this.httpApiService.createCategory(body);
-        }
-      })
-  }
-
-
+      const values = categories.find(value => value.title === this.newCategoryName);
+      if(values){
+        alert('Ya existe una categoria con ese nombre.');
+        return;
+        } 
+      const body = {
+        title:  this.newCategoryName
+      }
+      JSON.stringify(body);
+      this.httpApiService.createCategory(body);
+}
 
   createNewSubCategory(){
     this.httpApiService.searchSubCategories().subscribe((subcategories: SubCategory) => {
@@ -151,25 +148,18 @@ export class CreateComponent implements OnInit {
   }
 
   createNewSubCategoryBody(subcategories){
-    if(this.currentCategory){
-      subcategories.map((value) => {
-        if( value.title === this.newSubCategoryName){
-          console.log('Ya existe una sub categoria con ese nombre.');
-        } else {
-  
+    const values = subcategories.find(value => value.title === this.newSubCategoryName);
+    if(values){
+      alert('Ya existe una sub categoria con ese nombre.');
+      return;
+      } 
       const body = {
         category: this.currentCategory,
         title:  this.newSubCategoryName,
       }
       JSON.stringify(body);
       this.httpApiService.createSubCategory(body);
-        }
-      })
-    } else {
-      console.log('Selecciona una categoria');
-    }
-
-
+ 
   }
   
 
@@ -181,12 +171,11 @@ export class CreateComponent implements OnInit {
   }
 
   createNewSecondSubCategoryBody(secondsubcategories){
-    if(this.currentCategory && this.currentSubCategory){
-      secondsubcategories.map((value) => {
-        if( value.title === this.newSecondSubcategoryName){
-          console.log('Ya existe una sub categoria con ese nombre.');
-        } else {
-
+    const values = secondsubcategories.find(value => value.title === this.newSecondSubcategoryName);
+    if(values){
+      alert('Ya existe una segunda sub categoria con ese nombre.');
+      return;
+      } 
       const body = {
         category: this.currentCategory,
         subcategory: this.currentSubCategory,
@@ -194,11 +183,6 @@ export class CreateComponent implements OnInit {
       }
       JSON.stringify(body);    
       this.httpApiService.createSecondSubcategory(body);
-        }
-      })
-    } else {
-      console.log('Selecciona una categoria y una subcategoria');
-    }
   }
 
 // SELECT OPTIONS

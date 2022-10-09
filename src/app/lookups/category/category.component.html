@@ -14,10 +14,11 @@
           [showRowLines]="true"
           [showBorders]="true"
           [columnAutoWidth]="true"
+          
         >
           <dxo-filter-row [visible]="true"></dxo-filter-row>
-          <dxi-column dataField="subcategory" caption="Subcategories" width="30%"></dxi-column>
-          <dxi-column dataField="secondsubcategory" caption="Second Subcategories" width="70%"></dxi-column>
+          <dxi-column  dataField="subcategory" caption="Subcategories" width="30%" cssClass="pointer-column"></dxi-column>
+          <dxi-column dataField="secondsubcategory" caption="Second Subcategories" width="70%" cssClass="pointer-column"></dxi-column>
         </dx-data-grid> 
 
 
@@ -26,7 +27,7 @@
   </div>
 </div>
 <div class="modal-footer">
-  <button type="button" class="btn primaryBtn" (click)="closeModal()">Select</button>
+  <button type="button" class="btn btn-primary" (click)="closeModal()">Select</button>
 </div>
 
 
