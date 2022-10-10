@@ -97,11 +97,28 @@
         <div class="col">
           <label class="form-label">Text</label>
           <div>
-            <dx-text-area
+
+            <dx-data-grid [dataSource]="textDataSource" (onInitNewRow)="initNewRow($event)">
+              <dxo-editing
+              mode="batch"
+              [allowAdding]="true"
+              [allowDeleting]="true"
+              [allowUpdating]="true"
+            >
+              </dxo-editing>
+              <dxi-column dataField="title" caption="Title" width="15%" [allowEditing]="true">
+              </dxi-column>
+              <dxi-column dataField="paragraph" caption="Paragraph" width="85%" [allowEditing]="true">
+              </dxi-column>
+
+            </dx-data-grid>
+
+
+            <!-- <dx-text-area
             [(ngModel)]="currentText"
-            [height]="200"
+            [height]="100"
           >
-          </dx-text-area>
+          </dx-text-area> -->
           </div>
         </div>
       </div>

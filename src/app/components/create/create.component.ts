@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import ArrayStore from 'devextreme/data/array_store';
 import DataSource from 'devextreme/data/data_source';
 import { firstValueFrom, Observable, Subject } from 'rxjs';
 import { CachedResultsService } from 'src/app/services/cached-results.service';
@@ -38,6 +39,8 @@ export class CreateComponent implements OnInit {
   secondSubCategoryDataSource: DataSource | undefined;
   newSecondSubcategoryName: string = '';
 
+  textDataSource: DataSource | undefined
+
   currentCategory: string = '';
   currentSubCategory: string = '';
   currentSecondSubCategory: string = '';
@@ -58,6 +61,7 @@ export class CreateComponent implements OnInit {
     this.createCategoryDataSource();
     this.createSubCategoryDataSource();
     this.createSecondSubCategoryDataSource();
+    this.createTextDataSource();
   }
 
   // CATEGORY, SUBCATEGORY AND SECOND SUBCATEGORI FORM
@@ -116,6 +120,36 @@ export class CreateComponent implements OnInit {
         return firstValueFrom(this.cachedResultsService.searchSecondSubCategoriesFromCache());
       }
     })
+  }
+
+  createTextDataSource(){
+    const text = [
+          {
+          title: '',
+          paragraph: ''
+        }
+      ]
+      const textStore = new ArrayStore({
+        data: text
+      });
+      this.textDataSource = new DataSource({
+        store: textStore
+      });
+      
+      // loadMode: 'raw',
+      // byKey: (key) => {
+      //   return key;
+      // },
+      // load: () => {
+      //   const text = [
+      //     {
+      //     title: '',
+      //     paragraph: ''
+      //   }
+      // ]
+      //   return text;
+      // }
+    // })
   }
 
   // CREATE CATEGORIES, SUBCATEGORIES AND SECOND SUBCATEGORIES
@@ -200,6 +234,8 @@ export class CreateComponent implements OnInit {
   }
 
   createArticleForm(){
+    console.log(this.textDataSource.items());
+    
     this.articleForm = new FormGroup({
       titleCategory: new FormControl(this.currentCategory, Validators.required),
       titleSubCategory: new FormControl(this.currentSubCategory, Validators.required),
@@ -207,8 +243,8 @@ export class CreateComponent implements OnInit {
       text: new FormControl(this.currentText, Validators.required),
       images: new FormControl('')
     });
-    const newArticle = this.createNewArticle(this.articleForm.value);    
-    this.httpApiService.createArticle(newArticle);
+    // const newArticle = this.createNewArticle(this.articleForm.value);    
+    // this.httpApiService.createArticle(newArticle);
   }
 
   createNewArticle(e){
@@ -220,6 +256,10 @@ export class CreateComponent implements OnInit {
       images: e.images
     };
     return newArticle;
+  }
+
+  initNewRow(e){
+    console.log(e);
   }
   
 }
