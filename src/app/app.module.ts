@@ -19,7 +19,9 @@ import {
   DxDateBoxModule, 
   DxSelectBoxModule, 
   DxTextAreaModule, 
-  DxTreeListModule} from 'devextreme-angular';
+  DxTreeListModule,
+  DxFormModule,
+  DxHtmlEditorModule} from 'devextreme-angular';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ArticleComponent } from './article/article.component';
 import { CategoryComponent } from './lookups/category/category.component';
@@ -52,8 +54,12 @@ import { ArticlesComponent } from './lookups/articles/articles.component';
     DxDateBoxModule,
     DxSelectBoxModule,
     DxTextAreaModule,
-    DxTreeListModule
-  ],
+    DxTreeListModule,
+    DxTextAreaModule,
+    DxFormModule,
+    DxHtmlEditorModule,
+    DxCheckBoxModule,
+    DxSelectBoxModule,  ],
   providers: [],
   bootstrap: [AppComponent]
 })

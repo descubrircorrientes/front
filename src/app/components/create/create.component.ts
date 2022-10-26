@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import ArrayStore from 'devextreme/data/array_store';
 import DataSource from 'devextreme/data/data_source';
 import { firstValueFrom, Observable, Subject } from 'rxjs';
+import { ArticleService } from 'src/app/services/article.service';
 import { CachedResultsService } from 'src/app/services/cached-results.service';
 import { HttpApiService } from 'src/app/services/http-api.service';
-import { ArticleDto, Category, SecondSubCategory, SubCategory } from '../models/article.model';
+import { ArticleDto, Category, SecondSubCategory, SubCategory, TabConfig } from '../models/article.model';
 
 @Component({
   selector: 'app-create',
@@ -13,6 +14,13 @@ import { ArticleDto, Category, SecondSubCategory, SubCategory } from '../models/
   styleUrls: ['./create.component.scss']
 })
 export class CreateComponent implements OnInit {
+
+  isMultiline = true;
+  valueContent: string;
+  textArticle: string;
+
+  tabs: TabConfig[];
+  currentTab: string[];
 
   categoryForm: FormGroup = new FormGroup({});
   subCategoryForm: FormGroup = new FormGroup({});
@@ -49,8 +57,11 @@ export class CreateComponent implements OnInit {
 
   constructor(
     private cachedResultsService: CachedResultsService,
-    private httpApiService: HttpApiService
+    private httpApiService: HttpApiService,
+    private articleService: ArticleService
     ) {
+      this.tabs = articleService.getTabsData();
+      this.currentTab = this.tabs[2].value;
    }
 
   ngOnInit() {
@@ -234,17 +245,22 @@ export class CreateComponent implements OnInit {
   }
 
   createArticleForm(){
-    console.log(this.textDataSource.items());
+    console.log(typeof(this.textArticle));
     
     this.articleForm = new FormGroup({
       titleCategory: new FormControl(this.currentCategory, Validators.required),
       titleSubCategory: new FormControl(this.currentSubCategory, Validators.required),
       titleSecondSubCategory: new FormControl(this.currentSecondSubCategory),
-      text: new FormControl(this.currentText, Validators.required),
+      // text: new FormArray([
+      //     new FormControl(this.textDataSource.items())
+      // ]),
+      text: new FormControl(this.textArticle),
       images: new FormControl('')
-    });
-    // const newArticle = this.createNewArticle(this.articleForm.value);    
-    // this.httpApiService.createArticle(newArticle);
+    });    
+    const newArticle = this.createNewArticle(this.articleForm.value);
+    console.log('new',newArticle);
+     
+    this.httpApiService.createArticle(newArticle);
   }
 
   createNewArticle(e){
@@ -252,6 +268,7 @@ export class CreateComponent implements OnInit {
       category: e.titleCategory,
       subcategory: e.titleSubCategory,
       secondsubcategory : e.titleSecondSubCategory,
+      // text: e.text[0],
       text: e.text,
       images: e.images
     };

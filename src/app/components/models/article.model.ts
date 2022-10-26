@@ -4,6 +4,10 @@ export interface ArticleDto {
     secondsubcategory?: string;
     images?: string;
     text: string;
+    // text: [{
+    //     paragraph: string;
+    //     title: string;
+    // }];
 }
 
 export interface Category {
@@ -24,3 +28,8 @@ export interface SecondSubCategory {
     title: string;
     id?: string;
 }
+
+export interface TabConfig {
+    name: string;
+    value: string[];
+  }
