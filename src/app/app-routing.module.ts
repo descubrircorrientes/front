@@ -8,7 +8,7 @@ import { InfoComponent } from './components/info/info.component';
 import { NavComponent } from './components/nav/nav.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '', pathMatch: 'full' },
+  { path: '', redirectTo: 'index', pathMatch: 'full' },
   { path: 'index', component: IndexComponent },
   { path: 'nav', component: NavComponent },
   { path: 'dashboard', component: DashboardComponent },

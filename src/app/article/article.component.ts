@@ -19,8 +19,6 @@ export class ArticleComponent implements OnInit {
   ) {
     this.routes.params.subscribe(() => {
       this.article = JSON.parse(localStorage.getItem('currentArticle'));
-      console.log(this.article);
-      
     });
   }
 

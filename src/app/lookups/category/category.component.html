@@ -14,14 +14,25 @@
           [showRowLines]="true"
           [showBorders]="true"
           [columnAutoWidth]="true"
-          
+          [hoverStateEnabled]="true"
         >
+          <dxo-selection
+              mode="single">
+          </dxo-selection>
+          <dxo-paging [pageSize]="10"></dxo-paging>
+          <dxo-pager
+            [showPageSizeSelector]="true"
+            [allowedPageSizes]="[10, 25, 50, 100]"
+          ></dxo-pager>
+          <dxo-search-panel
+            [visible]="true"
+            [highlightCaseSensitive]="true"
+          ></dxo-search-panel>
           <dxo-filter-row [visible]="true"></dxo-filter-row>
+          <dxi-column  dataField="category" caption="Categories" width="30%" cssClass="pointer-column"></dxi-column>
           <dxi-column  dataField="subcategory" caption="Subcategories" width="30%" cssClass="pointer-column"></dxi-column>
           <dxi-column dataField="secondsubcategory" caption="Second Subcategories" width="70%" cssClass="pointer-column"></dxi-column>
         </dx-data-grid> 
-
-
       </div>
     </div>
   </div>

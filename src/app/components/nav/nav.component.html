@@ -1,13 +1,21 @@
 <div class="nav-container">
     <div class="header">
-        <div class="logo">
+        <div routerLink="/dashboard" class="logo">
             <img src="{{ logoUrl }}" alt="logo">
         </div>
 
         <div class="login-container">
-            <button class="login-button">Iniciar sesion</button>
-            <button class="login-button" routerLink="/create">Add content</button>
+            <div>
+              <button class="login-button">Iniciar sesion</button>
+              <button class="login-button" routerLink="/create">Add content</button>
+            </div>
+
+            <div>
+              <input class="form-control" type="search" name="search" id="" placeholder="SEARCH">
+            </div>
         </div>
+
+
     </div>
 </div>
 

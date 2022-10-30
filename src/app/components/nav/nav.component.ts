@@ -1,12 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Observable } from 'rxjs';
 import { CategoryComponent } from 'src/app/lookups/category/category.component';
 import { CategoryService } from 'src/app/lookups/category/category.service';
 import { ArticleService } from 'src/app/services/article.service';
 import { HttpApiService } from 'src/app/services/http-api.service';
-import { ArticleDto, Category, SubCategory } from '../models/article.model';
+import { Category, SubCategory } from '../models/article.model';
 
 @Component({
   selector: 'nav-component',
@@ -39,22 +38,22 @@ export class NavComponent implements OnInit {
       this.categories = categories;
     })
 
-    this.httpApiService.searchArticles().subscribe((articles: ArticleDto) => {      
-      this.articles = articles;  
-    });
+    // this.httpApiService.searchArticles().subscribe((articles: ArticleDto) => {      
+    //   this.articles = articles;  
+    // });
   }
 
-  getCategories(){
-    this.httpApiService.searchCategories().subscribe((categories: Category) => {
-      this.categories = categories;
-    });
-  }
+  // getCategories(){
+  //   this.httpApiService.searchCategories().subscribe((categories: Category) => {
+  //     this.categories = categories;
+  //   });
+  // }
 
-  getSubCategories(){
-    this.httpApiService.searchSubCategories().subscribe((subCategories: SubCategory) => {
-      this.subCategories = subCategories;
-    });
-  }
+  // getSubCategories(){
+  //   this.httpApiService.searchSubCategories().subscribe((subCategories: SubCategory) => {
+  //     this.subCategories = subCategories;
+  //   });
+  // }
 
   searchSubcategories(title: string): Promise<SubCategory> { 
     this.categoryService.currentCategory = title;

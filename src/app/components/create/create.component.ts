@@ -204,9 +204,7 @@ export class CreateComponent implements OnInit {
       }
       JSON.stringify(body);
       this.httpApiService.createSubCategory(body);
- 
   }
-  
 
   createNewSecondSubcategory(){  
     this.httpApiService.searchSecondSubcategory().subscribe((secondsubcategories: SecondSubCategory) => {
@@ -245,21 +243,14 @@ export class CreateComponent implements OnInit {
   }
 
   createArticleForm(){
-    console.log(typeof(this.textArticle));
-    
     this.articleForm = new FormGroup({
       titleCategory: new FormControl(this.currentCategory, Validators.required),
       titleSubCategory: new FormControl(this.currentSubCategory, Validators.required),
       titleSecondSubCategory: new FormControl(this.currentSecondSubCategory),
-      // text: new FormArray([
-      //     new FormControl(this.textDataSource.items())
-      // ]),
       text: new FormControl(this.textArticle),
       images: new FormControl('')
     });    
     const newArticle = this.createNewArticle(this.articleForm.value);
-    console.log('new',newArticle);
-     
     this.httpApiService.createArticle(newArticle);
   }
 
@@ -268,15 +259,10 @@ export class CreateComponent implements OnInit {
       category: e.titleCategory,
       subcategory: e.titleSubCategory,
       secondsubcategory : e.titleSecondSubCategory,
-      // text: e.text[0],
       text: e.text,
       images: e.images
     };
     return newArticle;
-  }
-
-  initNewRow(e){
-    console.log(e);
   }
   
 }

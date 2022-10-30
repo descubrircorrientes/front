@@ -26,8 +26,6 @@ export class HttpApiService {
   }
 
   createCategory(category: any){
-    console.log('create');
-    
     return this.http.post<any>(this.categoryUrl, category).subscribe({
       next: data => {
         location.reload();

@@ -10,7 +10,9 @@
     width: 70%;
     display: flex;
     justify-content: center;
+    cursor: pointer;
 }
+
 .logo img {
     width: 50%;
     margin-top: 2%;
@@ -20,8 +22,37 @@
 .login-container{
     width: 30%;
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+
+    div{
+        display: flex;
+        width: 100%;
+        justify-content: center;
+    }
+    button{
+        width: 45%;
+    }
+    button:hover{
+        border: 1px solid rgb(87, 21, 21);
+        outline: 0 none;
+        // color: rgb(87, 21, 21);
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgb(159, 45, 45);
+    }
+
+    input{
+        width: 80%;
+    }
+
+    input:focus{
+        border: 1px solid rgb(87, 21, 21);
+        outline: 0 none;
+        color: rgb(87, 21, 21);
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgb(159, 45, 45);
+    }
 }
+
 .login-button{
     align-self: center;
     width: 90%;

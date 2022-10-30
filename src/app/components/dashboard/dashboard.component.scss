@@ -1,0 +1,131 @@
+.card-container{
+    margin-bottom: 5px;
+}
+
+.row-cols-md-4 > * {
+    flex: 0 0 auto;
+    width: 20%;
+}
+
+.card-container .col{
+    margin-bottom: 5px;
+}
+
+.card{
+    border: 1px solid rgb(87, 21, 21);
+    box-shadow: 0px 0px 5px rgb(87, 21, 21);
+}
+
+.card-body{
+    cursor: pointer;
+}
+
+.check-container div {
+    margin-right: 15px;
+    height: 100%;
+    line-height: 50%;
+}
+
+.card{
+    max-width: 250px;
+}
+
+.card-icon{
+    position: absolute;
+    right: 5%;
+    cursor: pointer;
+}
+
+.card-title{
+    font-size: 14px;
+    width: 85%;
+}
+
+.text-green{
+    color: #22c55e;
+}
+
+.text-red{
+   color: #ff3d32;
+}
+
+.text-blue{
+    color: #3b82f6;
+}
+
+.text-500{
+    color: rgb(87, 21, 21);
+}
+
+.card-text{
+    font-weight: 500!important;
+    font-size: 1rem!important;
+    color: #212121;
+}
+
+.fa-readme{
+    color: #3b82f6;
+    font-size: 25px;
+}
+
+.fa-books{
+    color: #f97316;
+    font-size: 25px;
+}
+
+.fa-arrow-right-arrow-left, .fa-newspaper{
+    color: #a855f7;
+    font-size: 25px;
+}
+
+.fa-cart-shopping{
+    color:  #a855f7;
+    font-size: 25px;
+}
+.card-container .row{
+    margin-bottom: 15px;
+}
+
+.card-footer span {
+   font-size: small;
+}
+
+.card-footer {
+    height: 4rem;
+ }
+
+ @media screen and (max-width: 920px) {
+    .card-footer {
+        height: 5rem;
+     }
+ }
+
+ @media screen and (max-width: 920px) {
+    .row-cols-md-4 > * {
+        flex: 0 0 auto;
+        width: 25%;
+    }
+    .card-container .col{
+        margin-bottom: 15px;
+    }
+ }
+
+ @media screen and (max-width: 805px) {
+    .row-cols-md-4 > * {
+        flex: 0 0 auto;
+        width: 33%;
+    }
+    .card-container .col{
+        margin-bottom: 15px;
+    }
+ }
+
+ @media screen and (max-width: 650px) {
+    .row-cols-md-4 > * {
+        flex: 0 0 auto;
+        width: 50%;
+    }
+    .card-container .col{
+        margin-bottom: 15px;
+    }
+ }

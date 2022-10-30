@@ -95,25 +95,10 @@
     <div>
       <div class="row">
         <div class="col">
+          <h1 *ngIf="textArticle">Cantidad de caracteres: {{textArticle.length}}</h1>
+
           <label class="form-label">Text</label>
           <div>
-
-            <!-- <dx-data-grid [dataSource]="textDataSource" (onInitNewRow)="initNewRow($event)"> -->
-              <!-- <dxo-editing
-              mode="batch"
-              [allowAdding]="true"
-              [allowDeleting]="true"
-              [allowUpdating]="true"
-            >
-              </dxo-editing>
-
-              <dxi-column dataField="title" caption="Title" width="15%" >
-              </dxi-column>
-
-             <dxi-column dataField="paragraph" caption="Paragraph" width="85%">
-              </dxi-column> -->
-
-
               <dx-html-editor height="725px" [value]="valueContent" [(ngModel)]="textArticle">
                 <dxo-toolbar [multiline]="isMultiline">
                   <dxi-item name="undo"></dxi-item>
@@ -178,7 +163,6 @@
                 <dxo-image-upload [tabs]="currentTab" fileUploadMode="base64">
                 </dxo-image-upload>
               </dx-html-editor>
-              
           </div>
         </div>
       </div>
