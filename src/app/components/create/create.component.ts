@@ -72,7 +72,6 @@ export class CreateComponent implements OnInit {
     this.createCategoryDataSource();
     this.createSubCategoryDataSource();
     this.createSecondSubCategoryDataSource();
-    this.createTextDataSource();
   }
 
   // CATEGORY, SUBCATEGORY AND SECOND SUBCATEGORI FORM
@@ -131,36 +130,6 @@ export class CreateComponent implements OnInit {
         return firstValueFrom(this.cachedResultsService.searchSecondSubCategoriesFromCache());
       }
     })
-  }
-
-  createTextDataSource(){
-    const text = [
-          {
-          title: '',
-          paragraph: ''
-        }
-      ]
-      const textStore = new ArrayStore({
-        data: text
-      });
-      this.textDataSource = new DataSource({
-        store: textStore
-      });
-      
-      // loadMode: 'raw',
-      // byKey: (key) => {
-      //   return key;
-      // },
-      // load: () => {
-      //   const text = [
-      //     {
-      //     title: '',
-      //     paragraph: ''
-      //   }
-      // ]
-      //   return text;
-      // }
-    // })
   }
 
   // CREATE CATEGORIES, SUBCATEGORIES AND SECOND SUBCATEGORIES
@@ -248,7 +217,6 @@ export class CreateComponent implements OnInit {
       titleSubCategory: new FormControl(this.currentSubCategory, Validators.required),
       titleSecondSubCategory: new FormControl(this.currentSecondSubCategory),
       text: new FormControl(this.textArticle),
-      images: new FormControl('')
     });    
     const newArticle = this.createNewArticle(this.articleForm.value);
     this.httpApiService.createArticle(newArticle);
@@ -260,9 +228,28 @@ export class CreateComponent implements OnInit {
       subcategory: e.titleSubCategory,
       secondsubcategory : e.titleSecondSubCategory,
       text: e.text,
-      images: e.images
     };
     return newArticle;
   }
-  
+
+  onValueChanged(e){
+    // console.log(e.value);
+    
+    if(e.value){
+    e.value = e.value.replace("h1", "h2");
+    e.value = e.value.replace("<h2><strong", "<h2");
+    e.value = e.value.replace("</strong></h2>", "</h2>");
+
+    e.value = e.value.replace("<p><strong", "<p");
+    e.value = e.value.replace("</strong></p>", "</p>");
+    
+    e.value = e.value.replace(/(["style=""]+)(["""])/g, "");
+    // e.value = e.value.replace(/(["<table"]+)(["</table>"]+)/g, "");
+
+    this.textArticle = e.value;    
+    }
+
+  }
+
 }
+

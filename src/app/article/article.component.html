@@ -1,5 +1,9 @@
 <div *ngIf="article" class="card-container">
 
+    <div class="deleteArticle">
+        <span>Eliminar Articulo: </span><i (click)="delete()" class="fa-solid fa-trash"></i>
+    </div>
+
     <h3>{{article.category}}</h3>
     <h4>{{article.subcategory}}</h4>
     <h4>{{article.secondsubcategory}}</h4>

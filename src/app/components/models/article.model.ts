@@ -2,12 +2,7 @@ export interface ArticleDto {
     category: Category;
     subcategory?: SubCategory;
     secondsubcategory?: string;
-    images?: string;
     text: string;
-    // text: [{
-    //     paragraph: string;
-    //     title: string;
-    // }];
 }
 
 export interface Category {

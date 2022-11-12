@@ -1,5 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { firstValueFrom, Observable } from 'rxjs';
 import { ArticleDto, Category, SecondSubCategory, SubCategory } from '../components/models/article.model';
 
@@ -13,8 +14,10 @@ export class HttpApiService {
   secondSubCategoryUrl =  'https://descubrir-corrientes.herokuapp.com/secondsubcategory';
   articlesUrl = 'https://descubrir-corrientes.herokuapp.com/articles'; // URL to web api
 
+
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private router: Router,
   ) { }
 
   //CATEGORIES
@@ -87,6 +90,18 @@ export class HttpApiService {
     return this.http.post<any>(this.articlesUrl, article).subscribe({
       next: data => {        
         location.reload();
+    },
+    error: error => {
+        console.error('There was an error!', error);
+      }
+    });
+  }
+
+  deleteArticle(id: any){
+    const url = `${this.articlesUrl}/${id}`;
+    return this.http.delete<any>(url).subscribe({
+      next: data => {        
+        this.router.navigate(['/']);
     },
     error: error => {
         console.error('There was an error!', error);

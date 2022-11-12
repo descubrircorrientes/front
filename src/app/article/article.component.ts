@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ArticleDto } from '../components/models/article.model';
+import { HttpApiService } from '../services/http-api.service';
 
 @Component({
   selector: 'app-article',
@@ -16,6 +17,7 @@ export class ArticleComponent implements OnInit {
 
   constructor(
     private routes: ActivatedRoute,
+    private httpApiService: HttpApiService,
   ) {
     this.routes.params.subscribe(() => {
       this.article = JSON.parse(localStorage.getItem('currentArticle'));
@@ -23,5 +25,11 @@ export class ArticleComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  delete(){
+    console.log(this.article._id);
+    this.httpApiService.deleteArticle(this.article._id)
+    
   }
 }

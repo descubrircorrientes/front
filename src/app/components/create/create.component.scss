@@ -1,3 +1,24 @@
+::ng-deep .dx-htmleditor-content > * {
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+
+::ng-deep .dx-htmleditor-content > p {
+    font-size: 14px;
+    color: rgb(32, 30, 30); 
+}
+
+::ng-deep .dx-htmleditor-content > h2 {
+    font-size: 24px;
+    color: black; 
+}
+
+::ng-deep .dx-htmleditor-content > em {
+    font-style: italic;
+}
+
+
 .create-titles-container{
     display: flex;
 }
