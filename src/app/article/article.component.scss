@@ -9,29 +9,19 @@
     height: 100%;
 }
 
-h3{
+.article{
     text-align: left;
+    font-size: 14px;
 }
 
-h4{
+.subarticle{
     text-align: center;
+    font-size: 18px;
 }
 
 .article-container{
     display: flex;
     flex-wrap: wrap;
-}
-
-.text-container{
-    // text-align: justify;
-    width: 80%;
-    padding: 15px;
-
-}
-
-.image-container{
-    width: 20%;
-    min-width: 150px;
 }
 
 .deleteArticle{
