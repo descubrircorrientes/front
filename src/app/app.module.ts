@@ -27,6 +27,7 @@ import { ArticleComponent } from './article/article.component';
 import { CategoryComponent } from './lookups/category/category.component';
 import { SubcategoryComponent } from './lookups/subcategory/subcategory.component';
 import { ArticlesComponent } from './lookups/articles/articles.component';
+import { CurrentArticleComponent } from './current-article/current-article.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,7 +39,8 @@ import { ArticlesComponent } from './lookups/articles/articles.component';
     ArticleComponent,
     CategoryComponent,
     SubcategoryComponent,
-    ArticlesComponent
+    ArticlesComponent,
+    CurrentArticleComponent
   ],
   imports: [
     HttpClientModule,

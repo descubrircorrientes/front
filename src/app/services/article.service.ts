@@ -24,8 +24,6 @@ export class ArticleService {
     ];
   }
 
-
-
   getArticles(){
     return this.articles;
   }

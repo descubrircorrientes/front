@@ -30,6 +30,5 @@ export class ArticleComponent implements OnInit {
   delete(){
     console.log(this.article._id);
     this.httpApiService.deleteArticle(this.article._id)
-    
   }
 }

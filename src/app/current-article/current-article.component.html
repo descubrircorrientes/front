@@ -1,0 +1,22 @@
+<div *ngIf="article" class="card-container">
+
+    <span class="article-first">Articulo destacado</span>
+
+
+    <h3 class="article">{{article.category}}</h3>
+    <h3  class="article">{{article.subcategory}}</h3>
+    <h4 class="subarticle">{{article.secondsubcategory}}</h4>
+    
+    <div class="article-container" >
+        <div class="text-container" innerHtml="{{article.text}}">
+        </div>
+        <div class="read-more-container">
+            <a>...</a>
+            <span (click)="readMore()">Leer mas.</span>
+        </div>
+
+    </div>
+    
+    
+
+</div>

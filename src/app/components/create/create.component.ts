@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { DxHtmlEditorComponent } from 'devextreme-angular';
 import ArrayStore from 'devextreme/data/array_store';
 import DataSource from 'devextreme/data/data_source';
 import { firstValueFrom, Observable, Subject } from 'rxjs';
@@ -14,6 +15,9 @@ import { ArticleDto, Category, SecondSubCategory, SubCategory, TabConfig } from 
   styleUrls: ['./create.component.scss']
 })
 export class CreateComponent implements OnInit {
+
+  // @ViewChild("", {static: true}) : ElementRef;
+  @ViewChild("DxHtmlEditor") dxHtmlEditor: DxHtmlEditorComponent
 
   isMultiline = true;
   valueContent: string;
@@ -227,27 +231,26 @@ export class CreateComponent implements OnInit {
       category: e.titleCategory,
       subcategory: e.titleSubCategory,
       secondsubcategory : e.titleSecondSubCategory,
-      text: e.text,
+      text: e.text
     };
     return newArticle;
   }
 
-  onValueChanged(e){
-    // console.log(e.value);
+  onValueChanged(e){   
     
-    if(e.value){
-    e.value = e.value.replace("h1", "h2");
-    e.value = e.value.replace("<h2><strong", "<h2");
-    e.value = e.value.replace("</strong></h2>", "</h2>");
+    // if(e.value){
+    // e.value = e.value.replace("h1", "h2");
+    // e.value = e.value.replace("<h2><strong", "<h2");
+    // e.value = e.value.replace("</strong></h2>", "</h2>");
 
-    e.value = e.value.replace("<p><strong", "<p");
-    e.value = e.value.replace("</strong></p>", "</p>");
+    // e.value = e.value.replace("<p><strong", "<p");
+    // e.value = e.value.replace("</strong></p>", "</p>");
     
-    e.value = e.value.replace(/(["style=""]+)(["""])/g, "");
-    // e.value = e.value.replace(/(["<table"]+)(["</table>"]+)/g, "");
+    // e.value = e.value.replace(/(["style=""]+)(["""])/g, "");
+    // // e.value = e.value.replace(/(["<table"]+)(["</table>"]+)/g, "");
 
-    this.textArticle = e.value;    
-    }
+    // this.textArticle = e.value;    
+    // }
 
   }
 
