@@ -1,132 +1,149 @@
-.card-container{
-    margin-bottom: 5px;
+.container{
+    display: flex;
+    min-width: 70%;
+    width: 70%;
 }
 
-.row-cols-md-4 > * {
-    flex: 0 0 auto;
-    width: 20%;
+.dashboard-siderbar{
+    display: flex;
+    min-width: 30%;
+    width: 30%;
 }
 
-.card-container .col{
-    margin-bottom: 5px;
-    z-index: -1;
+.dashboard-article{
+    display: flex;
+    width: 70%;
 }
 
-.card{
-    border: 1px solid rgb(87, 21, 21);
-    box-shadow: 0px 0px 5px rgb(87, 21, 21);
-}
+// .card-container{
+//     margin-bottom: 5px;
+// }
 
-.card-body{
-    cursor: pointer;
-}
+// .row-cols-md-4 > * {
+//     flex: 0 0 auto;
+//     width: 20%;
+// }
 
-.check-container div {
-    margin-right: 15px;
-    height: 100%;
-    line-height: 50%;
-}
+// .card-container .col{
+//     margin-bottom: 5px;
+//     z-index: -1;
+// }
 
-.card{
-    max-width: 250px;
-}
+// .card{
+//     border: 1px solid rgb(87, 21, 21);
+//     box-shadow: 0px 0px 5px rgb(87, 21, 21);
+// }
 
-.card-icon{
-    position: absolute;
-    right: 5%;
-    cursor: pointer;
-}
+// .card-body{
+//     cursor: pointer;
+// }
 
-.card-title{
-    font-size: 14px;
-    width: 85%;
-}
+// .check-container div {
+//     margin-right: 15px;
+//     height: 100%;
+//     line-height: 50%;
+// }
 
-.text-green{
-    color: #22c55e;
-}
+// .card{
+//     max-width: 250px;
+// }
 
-.text-red{
-   color: #ff3d32;
-}
+// .card-icon{
+//     position: absolute;
+//     right: 5%;
+//     cursor: pointer;
+// }
 
-.text-blue{
-    color: #3b82f6;
-}
+// .card-title{
+//     font-size: 14px;
+//     width: 85%;
+// }
 
-.text-500{
-    color: rgb(87, 21, 21);
-}
+// .text-green{
+//     color: #22c55e;
+// }
 
-.card-text{
-    font-weight: 500!important;
-    font-size: 1rem!important;
-    color: #212121;
-}
+// .text-red{
+//    color: #ff3d32;
+// }
 
-.fa-readme{
-    color: #3b82f6;
-    font-size: 25px;
-}
+// .text-blue{
+//     color: #3b82f6;
+// }
 
-.fa-books{
-    color: #f97316;
-    font-size: 25px;
-}
+// .text-500{
+//     color: rgb(87, 21, 21);
+// }
 
-.fa-arrow-right-arrow-left, .fa-newspaper{
-    color: #a855f7;
-    font-size: 25px;
-}
+// .card-text{
+//     font-weight: 500!important;
+//     font-size: 1rem!important;
+//     color: #212121;
+// }
 
-.fa-cart-shopping{
-    color:  #a855f7;
-    font-size: 25px;
-}
-.card-container .row{
-    margin-bottom: 15px;
-}
+// .fa-readme{
+//     color: #3b82f6;
+//     font-size: 25px;
+// }
 
-.card-footer span {
-   font-size: small;
-}
+// .fa-books{
+//     color: #f97316;
+//     font-size: 25px;
+// }
 
-.card-footer {
-    height: 4rem;
- }
+// .fa-arrow-right-arrow-left, .fa-newspaper{
+//     color: #a855f7;
+//     font-size: 25px;
+// }
 
- @media screen and (max-width: 920px) {
-    .card-footer {
-        height: 5rem;
-     }
- }
+// .fa-cart-shopping{
+//     color:  #a855f7;
+//     font-size: 25px;
+// }
+// .card-container .row{
+//     margin-bottom: 15px;
+// }
 
- @media screen and (max-width: 920px) {
-    .row-cols-md-4 > * {
-        flex: 0 0 auto;
-        width: 25%;
-    }
-    .card-container .col{
-        margin-bottom: 15px;
-    }
- }
+// .card-footer span {
+//    font-size: small;
+// }
 
- @media screen and (max-width: 805px) {
-    .row-cols-md-4 > * {
-        flex: 0 0 auto;
-        width: 33%;
-    }
-    .card-container .col{
-        margin-bottom: 15px;
-    }
- }
+// .card-footer {
+//     height: 4rem;
+//  }
 
- @media screen and (max-width: 650px) {
-    .row-cols-md-4 > * {
-        flex: 0 0 auto;
-        width: 50%;
-    }
-    .card-container .col{
-        margin-bottom: 15px;
-    }
- }
+//  @media screen and (max-width: 920px) {
+//     .card-footer {
+//         height: 5rem;
+//      }
+//  }
+
+//  @media screen and (max-width: 920px) {
+//     .row-cols-md-4 > * {
+//         flex: 0 0 auto;
+//         width: 25%;
+//     }
+//     .card-container .col{
+//         margin-bottom: 15px;
+//     }
+//  }
+
+//  @media screen and (max-width: 805px) {
+//     .row-cols-md-4 > * {
+//         flex: 0 0 auto;
+//         width: 33%;
+//     }
+//     .card-container .col{
+//         margin-bottom: 15px;
+//     }
+//  }
+
+//  @media screen and (max-width: 650px) {
+//     .row-cols-md-4 > * {
+//         flex: 0 0 auto;
+//         width: 50%;
+//     }
+//     .card-container .col{
+//         margin-bottom: 15px;
+//     }
+//  }

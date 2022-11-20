@@ -28,6 +28,7 @@ import { CategoryComponent } from './lookups/category/category.component';
 import { SubcategoryComponent } from './lookups/subcategory/subcategory.component';
 import { ArticlesComponent } from './lookups/articles/articles.component';
 import { CurrentArticleComponent } from './current-article/current-article.component';
+import { SiderbarComponent } from './siderbar/siderbar.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,7 +41,8 @@ import { CurrentArticleComponent } from './current-article/current-article.compo
     CategoryComponent,
     SubcategoryComponent,
     ArticlesComponent,
-    CurrentArticleComponent
+    CurrentArticleComponent,
+    SiderbarComponent
   ],
   imports: [
     HttpClientModule,

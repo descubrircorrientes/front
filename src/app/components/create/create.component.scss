@@ -20,6 +20,9 @@
 
 .create-titles-container{
     display: flex;
+    text-align: center;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
 .create-article-container{
@@ -44,6 +47,10 @@
 .card-container {
     padding: 15px 25px;
     margin-bottom: 10px;
+}
+
+.create-label{
+    font-size: 12px;
 }
 
 .save-button{
