@@ -236,21 +236,24 @@ export class CreateComponent implements OnInit {
     return newArticle;
   }
 
-  onValueChanged(e){   
+  onValueChanged(e){
     
-    // if(e.value){
+    if(e.value){
+    // const reg = /([0-9]{3},[0-9]{3},[0-9]{3})/g;
+    // const reg2 = /(\d{3}),(\d{3}),(\d{3})/
+    // e.value.replace(reg, "255, 255, 255");
     // e.value = e.value.replace("h1", "h2");
-    // e.value = e.value.replace("<h2><strong", "<h2");
-    // e.value = e.value.replace("</strong></h2>", "</h2>");
+    // e.value = e.value.replace("<strong>", "");
+    // e.value = e.value.replace("</strong>", "");
 
     // e.value = e.value.replace("<p><strong", "<p");
     // e.value = e.value.replace("</strong></p>", "</p>");
     
     // e.value = e.value.replace(/(["style=""]+)(["""])/g, "");
-    // // e.value = e.value.replace(/(["<table"]+)(["</table>"]+)/g, "");
+    // e.value = e.value.replace(/(["<table"]+)(["</table>"]+)/g, "");
 
-    // this.textArticle = e.value;    
-    // }
+    this.textArticle = e.value;    
+    }
 
   }
 
