@@ -8,6 +8,7 @@ import { ArticleService } from 'src/app/services/article.service';
 import { CachedResultsService } from 'src/app/services/cached-results.service';
 import { HttpApiService } from 'src/app/services/http-api.service';
 import { ArticleDto, Category, SecondSubCategory, SubCategory, TabConfig } from '../models/article.model';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-create',
@@ -216,24 +217,36 @@ export class CreateComponent implements OnInit {
   }
 
   createArticleForm(){
-    this.articleForm = new FormGroup({
-      titleCategory: new FormControl(this.currentCategory, Validators.required),
-      titleSubCategory: new FormControl(this.currentSubCategory, Validators.required),
-      titleSecondSubCategory: new FormControl(this.currentSecondSubCategory),
-      text: new FormControl(this.textArticle),
-    });    
-    const newArticle = this.createNewArticle(this.articleForm.value);
-    this.httpApiService.createArticle(newArticle);
+    if(!this.currentCategory){
+      Swal.fire({
+        icon: 'error',
+        text: 'Debe seleciconar al menos una categoria.',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          return;
+        }
+      })
+    }
+    else{
+      this.articleForm = new FormGroup({
+        titleCategory: new FormControl(this.currentCategory, Validators.required),
+        titleSubCategory: new FormControl(this.currentSubCategory, Validators.required),
+        titleSecondSubCategory: new FormControl(this.currentSecondSubCategory),
+        text: new FormControl(this.textArticle),
+      });    
+      const newArticle = this.createNewArticle(this.articleForm.value);
+      this.httpApiService.createArticle(newArticle);
+    }
   }
 
   createNewArticle(e){
-    const newArticle: ArticleDto = {
-      category: e.titleCategory,
-      subcategory: e.titleSubCategory,
-      secondsubcategory : e.titleSecondSubCategory,
-      text: e.text
-    };
-    return newArticle;
+      const newArticle: ArticleDto = {
+        category: e.titleCategory,
+        subcategory: e.titleSubCategory,
+        secondsubcategory : e.titleSecondSubCategory,
+        text: e.text
+      };
+      return newArticle;
   }
 
   onValueChanged(e){
